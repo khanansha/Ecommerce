@@ -36,59 +36,27 @@
 						<div class="product_image_slider_container">
 							<div id="slider" class="flexslider">
 								<ul class="slides">
-									<li>
-										<img src="{% static 'images/product_1.jpg'%}" />
-									</li>
-									<li>
-										<img src="{% static 'images/product_2.jpg'%}" />
-									</li>
-									<li>
-										<img src="{% static 'images/product_3.jpg'%}" />
-									</li>
-									<li>
-										<img src="{% static 'images/product_4.jpg'%}" />
-									</li>
-									<li>
-										<img src="{% static 'images/product_5.jpg'%}" />
-									</li>
-									<li>
-										<img src="{% static 'images/product_6.jpg'%}" />
-									</li>
-									<li>
-										<img src="{% static 'images/product_7.jpg'%}" />
-									</li>
-									<li>
-										<img src="{% static 'images/product_8.jpg'%}" />
-									</li>
+									{% for p_img in pro_images %}
+										<li>
+										
+											<div><img src="{{ p_img.images.url}}" /></div>
+
+										</li>
+										{% endfor%}
+									
 								</ul>
 							</div>
 							<div class="carousel_container">
 								<div id="carousel" class="flexslider">
 									<ul class="slides">
+									{% for p_img in pro_images %}
 										<li>
-											<div><img src="{% static 'images/product_1.jpg'%}" /></div>
+										
+											<div><img src="{{ p_img.images.url}}" /></div>
+
 										</li>
-										<li>
-											<div><img src="{% static 'images/product_2.jpg'%}" /></div>
-										</li>
-										<li>
-											<div><img src="{% static 'images/product_3.jpg'%}" /></div>
-										</li>
-										<li>
-											<div><img src="{% static 'images/product_4.jpg'%}" /></div>
-										</li>
-										<li>
-											<div><img src="{% static 'images/product_5.jpg'%}" /></div>
-										</li>
-										<li>
-											<div><img src="{% static 'images/product_6.jpg'%}" /></div>
-										</li>
-										<li>
-											<div><img src="{% static 'images/product_7.jpg'%}" /></div>
-										</li>
-										<li>
-											<div><img src="{% static 'images/product_8.jpg'%}" /></div>
-										</li>
+										{% endfor%}
+										
 									</ul>
 								</div>
 								<div class="fs_prev fs_nav disabled"><i class="fa fa-chevron-up" aria-hidden="true"></i></div>
@@ -102,7 +70,7 @@
 						<div class="product_info">
                         {% for product in product %}
 							<div class="product_name">{{product.name}}</div>
-							<div class="product_category">In <a href="category.html">Category</a></div>
+							<div class="product_category">In <a href="category.html">{{product.category}}</a></div>
 							<div class="product_rating_container d-flex flex-row align-items-center justify-content-start">
 								<div class="rating_r rating_r_4 product_rating"><i></i><i></i><i></i><i></i><i></i></div>
 								<div class="product_reviews">4.7 out of (3514)</div>
@@ -112,9 +80,10 @@
 							<div class="product_size">
 								<div class="product_size_title">Select Size</div>
 								<ul class="d-flex flex-row align-items-start justify-content-start">
+								
 									<li>
 										<input type="radio" id="radio_1" disabled name="product_radio" class="regular_radio radio_1">
-										<label for="radio_1">XS</label>
+										<label for="radio_1">{{product.sizes}}</label>
 									</li>
 									<li>
 										<input type="radio" id="radio_2" name="product_radio" class="regular_radio radio_2" checked>

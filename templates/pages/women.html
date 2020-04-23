@@ -73,21 +73,9 @@
 								<div class="product_info d-flex flex-row align-items-start justify-content-start">
 									<div>
 										<div>
-										<!--
-										hubby dekh re wifeyyyyyyyy ko kabse
-										ooo lifeyy meeting p dhiyan do jaaaan
-										cutie pi bohot paka re wifeyyyyyyyy
-										I am soooooooooo you shonaaaaa
-										I am sooooooooooluckty to have you wifeyyyyyyyy
-										I lovyou soooooooooomuch
-										I love you alottttt jaaaaaaaan 
-										you are my life hubyyy
-										abhi dekho error aa rha have
-										OOOOOOOO lifeyyyyyyyy solve ksro to jaldi se 
-										yes sweetheart i love you alotttt -->
 										
 											<div class="product_name"><a href="{% url 'product' product.id %}">{{ product.name }}</a>  </div>
-											<div class="product_category">In <a href="category.html">Category</a></div>
+											<div class="product_category">In <a href="category.html">{{product.category}}</a></div>
 										</div>
 									</div>
 									<div class="ml-auto text-right">

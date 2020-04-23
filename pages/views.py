@@ -3,7 +3,7 @@ from django.http import HttpResponse
 # Create your views here.
 import json
 from django.http import JsonResponse
-from products.models import Product, Category
+from products.models import Product, Category, Image
 
 
 def index(request):
@@ -27,12 +27,13 @@ def category(request, category_id):
 
 def product(request, product_id):
     product = Product.objects.filter(id=product_id)
-# print karo wifeyyyyy product ko
-    # return HttpResponse(product)
-    # return JsonResponse(list(Product.objects.values()), safe=False)
-    return render(request, 'pages/product.html', {'product': product})
-# hubby category me bhi sirf id tha na to hmne category id q liya
-# samjh gyi hubyyy
-# very good lifeyyyyyyy
-# i love alott jaaan
-# wait lifeyyy browser m print krte h
+    # select * from image WHERE product_id= product_id
+    image = Image.objects.filter(product_id=product_id)
+    context = {
+        'product': product,
+        'pro_images': image,
+
+    }
+
+    # return JsonResponse(list(Image.objects.values()), safe=False)
+    return render(request, 'pages/product.html', context)
