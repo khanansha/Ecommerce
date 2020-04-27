@@ -28,6 +28,10 @@
 <!-- endif -->
 {% endif %}
 <link rel="stylesheet" type="text/css" href="{% static 'styles/responsive.css' %}">
+{% if 'cart' in request.path %}
+<link rel="stylesheet" type="text/css" href="{% static 'styles/cart.css'%}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/cart_responsive.css'%}">
+{% endif %}
 </head>
 <body>
 
@@ -57,6 +61,7 @@
 <script src="{% static 'js/custom.js'%}"></script>
 <script src="{% static 'plugins/flexslider/jquery.flexslider-min.js'%}"></script>
 <script src="{% static 'js/product.js'%}"></script>
+<script src="{% static 'js/cart.js'%}"></script>
 
 
 </body>

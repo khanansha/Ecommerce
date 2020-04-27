@@ -9,6 +9,10 @@ class Category(models.Model):
     def __str__(self):
         return self.category
 
+    @property
+    def get_products(self):
+        return Product.objects.filter(category_id=self.id).order_by('-pub_date')[:3]
+
         # return str(self.id)
 
 

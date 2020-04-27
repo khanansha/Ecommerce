@@ -1,0 +1,50 @@
+[
+    {
+        'id':1,
+        category:men
+        "product" : [
+            {
+                id: 1,
+                name: 'p1',
+                img: img1
+            },
+            {
+                id: 1,
+                name: 'p1',
+                img: img1
+            },
+            {
+                id: 1,
+                name: 'p1',
+                img: img1
+            }
+        ]
+    },
+    {
+        'id':2,
+        category:women
+        "product" : [
+            {
+                id: 1,
+                name: 'p1',
+                img: img1
+            },
+            {
+                id: 1,
+                name: 'p1',
+                img: img1
+            },
+            {
+                id: 1,
+                name: 'p1',
+                img: img1
+            }
+        ]
+    }
+]
+{% for category in category %}
+						<h1> {{category.category}} </h1>
+							{% for k in category.get_products %}
+								<p> {{k.image.url}} </p>
+							{% endfor %}
+						{% endfor %}
