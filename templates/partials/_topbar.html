@@ -68,7 +68,7 @@
 				<!-- User -->
 				<div class="user"><a href="#"><div><img src="{% static 'images/user.svg' %}" alt="https://www.flaticon.com/authors/freepik"><div>1</div></div></a></div>
 				<!-- Cart -->
-				<div class="cart"><a href="cart.html"><div><img class="svg" src="{% static 'images/cart.svg'%}" alt="https://www.flaticon.com/authors/freepik"></div></a></div>
+				<div class="cart" >(<span id="cart">0</span>)<a href=""><div><img class="svg" src="{% static 'images/cart.svg'%}" alt="https://www.flaticon.com/authors/freepik"></div></a></div>
 				<!-- Phone -->
 				<div class="header_phone d-flex flex-row align-items-center justify-content-start">
 					<div><div><img src="{% static 'images/phone.svg'%}" alt="https://www.flaticon.com/authors/freepik"></div></div>
@@ -77,3 +77,29 @@
 			</div>
 		</div>
 	</header>
+{% comment %} <script>
+console.log('working');
+if(localStorage.getItem('cart') == null){
+var cart = {};
+}
+else
+{
+cart = JSON.parse(localStorage.getItem('cart'));
+document.getElementById('cart').innerHTML = Object.keys(cart).length;
+}
+$('.cart').click(function(){
+console.log('clicked');
+var idstr = this.id.toString();
+console.log(idstr);
+if (cart[idstr] !=undefined){
+cart[idstr] = cart[idstr] + 1;
+}
+else
+{
+cart[idstr] = 1;
+}
+console.log(cart);
+localStorage.setItem('cart', JSON.stringify(cart));
+document.getElementById('cart').innerHTML = Object.keys(cart).length;
+});
+</script> {% endcomment %}

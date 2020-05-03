@@ -40,7 +40,6 @@
 										<li>
 										
 											<div><img src="{{ p_img.images.url}}" /></div>
-
 										</li>
 										{% endfor%}
 									
@@ -65,10 +64,12 @@
 						</div>
 					</div>
 
+
 					<!-- Product Info -->
 					<div class="col-lg-6 product_col">
 						<div class="product_info">
                         {% for product in product %}
+
 							<div class="product_name">{{product.name}}</div>
 							<div class="product_category">In <a href="category.html">{{product.category}}</a></div>
 							<div class="product_rating_container d-flex flex-row align-items-center justify-content-start">
@@ -99,11 +100,13 @@
 									<div class="product_button product_fav text-center d-flex flex-column align-items-center justify-content-center">
 										<div><div><img src="{% static 'images/heart_2.svg' %}" class="svg" alt=""><div>+</div></div></div>
 									</div>
-									<div class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
-										<div><div><img src="{% static 'images/cart.svg'%}" class="svg" alt=""><div>+</div></div></div>
-									</div>
+										<form action="{% url "cart_add" product.id %}" method="post">
+											{% csrf_token %}
+											{% comment %} {{ cart_product_form }} {% endcomment %}
+											<input type="submit" value="add to cart" class="btn btn-primary">
+										</form>
 								</div>
-							</div>
+							</div>							
 						</div>
                         {% endfor %}
 					</div>

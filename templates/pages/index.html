@@ -135,8 +135,9 @@
 					
 					<!-- Product -->
          
-					<div class="col-xl-4 col-md-6">
-           {% for product in product %}
+		 			<div class="col-xl-4 col-md-6">
+           			{% for product in product %}
+
 						<div class="product">
 							<div class="product_image"><img src="{{ product.image.url }}" alt=""></div>
 							<div class="product_content">
@@ -152,14 +153,25 @@
 										<div class="product_price text-right">{{product.price}}</div>
 									</div>
 								</div>
-								<div class="product_buttons">
+						
+								{% comment %} <form action="{% url "cart_add" product.id %}" method="post">
+								{% csrf_token %}
+								{{ cart_product_form }} 
+								<input type="submit" value="add to cart" class="btn btn-primary">
+							</form> {% endcomment %}
+								<div class="product_buttons"  >
 									<div class="text-right d-flex flex-row align-items-start justify-content-start">
 										<div class="product_button product_fav text-center d-flex flex-column align-items-center justify-content-center">
 											<div><div><img src="{% static 'images/heart_2.svg'%}" class="svg" alt=""><div>+</div></div></div>
 										</div>
-										<div class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center">
-											<div><div><img src="{% static 'images/cart.svg' %}" class="svg" alt=""><div>+</div></div></div>
-										</div>
+										<form action="{% url "cart_add" product.id %}" method="post">
+											{% csrf_token %}
+											{{ cart_product_form }} 
+										<input  type="submit" value="add to cart" class="btn btn-primary">
+										</form>
+										{% comment %} <div id="{{product.id}}" class="product_button product_cart text-center d-flex flex-column align-items-center justify-content-center ">
+											<div><div><img src="{% static 'images/cart.svg' %}" class="svg "  alt=""><div>+</div></div></div>
+										</div> {% endcomment %}
 									</div>
 								</div>
 							</div>
@@ -285,3 +297,4 @@
 		</div>
 
 {% endblock content %}
+

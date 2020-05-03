@@ -4,6 +4,7 @@ from django.http import HttpResponse
 import json
 from django.http import JsonResponse
 from products.models import Product, Category, Image
+from cart.forms import CartAddProductForm
 
 
 def index(request):
@@ -15,10 +16,12 @@ def index(request):
     # select *  from category LIMIT 3
     category = Category.objects.all()
     cat_slider = Category.objects.all()[:3]
+    cart_product_form = CartAddProductForm()
     context = {
         'product': product,
         'category': category,
         'cat_slider': cat_slider,
+        'cart_product_form': cart_product_form,
     }
     #Department.objects.filter(departmentvolunteer__isnull=True).values_list('name', flat=True)
     # return JsonResponse(list(Product.objects.select_related('product_id').values()), safe=False)
@@ -33,18 +36,25 @@ def index(request):
 
 def category(request, category_id):
     product = Product.objects.filter(category_id=category_id)
-    # print(product)
+    cart_product_form = CartAddProductForm()
+    context = {
+        'product': product,
+        'cart_product_form': cart_product_form,
 
-    return render(request, 'pages/women.html', {'product': product})
+    }
+
+    return render(request, 'pages/women.html', context)
 
 
 def product(request, product_id):
     product = Product.objects.filter(id=product_id)
     # select * from image WHERE product_id= product_id
     image = Image.objects.filter(product_id=product_id)
+    cart_product_form = CartAddProductForm()
     context = {
         'product': product,
         'pro_images': image,
+        'cart_product_form': cart_product_form,
 
     }
     # return JsonResponse(list(Product.objects.filter(id=product_id).values()), safe=False)
@@ -52,5 +62,5 @@ def product(request, product_id):
     return render(request, 'pages/product.html', context)
 
 
-def cart(request):
-    return render(request, 'pages/cart.html')
+# def cart(request):
+#     return render(request, 'pages/cart.html')
