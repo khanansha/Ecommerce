@@ -1,6 +1,6 @@
-
 {% extends 'base.html' %}
  {% load static %}
+{% load mathfilters %}
 
 
 {% block content %}
@@ -47,40 +47,49 @@
 							</div>
 
 							<!-- Cart Items -->
+							{% comment %} {% for cartdetail in cart %} {% endcomment %}
 							<div class="cart_items">
-                            
+							
+                        
 								<ul class="cart_items_list">
-                                {% for item in cart %}
-                                {% with product=item.product %}
-
+								{% comment %} {% for k in Cartdatabase.get_cartproduct %} {% endcomment %}
+								{% for cartdetail in cartdetail %}
+                               
 									<!-- Cart Item -->
 									<li class="cart_item item_list d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-lg-end justify-content-start">
+									{% comment %} {% for k in Cartdatabase.get_cartproduct %} {% endcomment %}
 										<div class="product d-flex flex-lg-row flex-column align-items-lg-center align-items-start justify-content-start mr-auto">
                                         
-											<div><div class="product_number">1</div></div>
-											<div><div class="product_image"><img src="{{ product.image.url}}" alt=""></div></div>
+											<div><div class="product_number">{{cartdetail.id}}</div></div>
+											<div><div class="product_image"><img src="{{cartdetail.product.image.url}}" alt=""></div></div>
 											<div class="product_name_container">
-												<div class="product_name"><a href="product.html">{{ product.name }}</a></div>
-												<div class="product_text">{{ product.desc }}</div>
+												<div class="product_name"><a href="product.html">{{cartdetail.product.name}}</a></div>
+												<div class="product_text">{{cartdetail.product.desc }}</div>
 											</div>
                                            
 										</div>
 										<div class="product_color product_text"><span>Color: </span>beige</div>
-										<div class="product_size product_text"><span>Size: </span>L</div>
-										<div class="product_price product_text"><span>{{ product.price }} </span></div>
+										<div class="product_price product_text"><span>{{cartdetail.product.price}} </span></div>
 										<div class="product_quantity_container">
 											<div class="product_quantity ml-lg-auto mr-lg-auto text-center">
-												<span class="product_text product_num">1</span>
-												<div class="qty_sub qty_button trans_200 text-center"><span>-</span></div>
-												<div class="qty_add qty_button trans_200 text-center"><span>+</span></div>
+												<span class="product_text product_num">{{cartdetail.quantity}}</span>
+												<div class="qty_sub qty_button trans_200 text-center"><a href ={% url "remq" cartdetail.id %}>-</a></div>
+												<div class="qty_add qty_button trans_200 text-center"> <a href ={% url "qadd" cartdetail.id %}>+ </a></div>
 											</div>
-										</div>
-										<div class="product_total product_text">${{ cart.get_total_price }}</div>
-
+										</div> 
+										{% comment %} lifey yeh pehla ka tha 
+										Haasaa shonaaa hata do hata di jaan 
+										
+										Samjhe wi yes hubyyyy
+										{% endcomment %}
+										<div class="product_total product_text">
+										{{cartdetail.quantity|mul:cartdetail.product.price }}
+										 {% comment %} $ {{cartdetail.quantity}}*{{cartdetail.product.price }}  {% endcomment %}
+									{% comment %} {% endfor %} {% endcomment %}
 									</li>
-                                     {% endwith %}
-                                    {% endfor %}
+                                  {% endfor %}
 								</ul>
+								
 							</div>
 
 							<!-- Cart Buttons -->
@@ -139,12 +148,13 @@
 					</div>
 					<div class="col-lg-6 cart_extra_col">
 						<div class="cart_extra cart_extra_2">
+						
 							<div class="cart_extra_content cart_extra_total">
-								<div class="cart_extra_title">${{ cart.get_total_price }}</div>
+								<div class="cart_extra_title">${{amt}}</div>
 								<ul class="cart_extra_total_list">
 									<li class="d-flex flex-row align-items-center justify-content-start">
 										<div class="cart_extra_total_title">Subtotal</div>
-										<div class="cart_extra_total_value ml-auto">$29.90</div>
+										<div class="cart_extra_total_value ml-auto">${{amt}}</div>
 									</li>
 									<li class="d-flex flex-row align-items-center justify-content-start">
 										<div class="cart_extra_total_title">Shipping</div>
@@ -152,11 +162,12 @@
 									</li>
 									<li class="d-flex flex-row align-items-center justify-content-start">
 										<div class="cart_extra_total_title">Total</div>
-										<div class="cart_extra_total_value ml-auto">$29.90</div>
+										<div class="cart_extra_total_value ml-auto">${{amt}}</div>
 									</li>
 								</ul>
 								<div class="checkout_button trans_200"><a href="checkout.html">proceed to checkout</a></div>
 							</div>
+							
 						</div>
 					</div>
 				</div>

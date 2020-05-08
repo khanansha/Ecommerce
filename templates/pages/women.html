@@ -75,6 +75,7 @@
 										<div>
 										
 											<div class="product_name"><a href="{% url 'product' product.id %}">{{ product.name }}</a>  </div>
+											<a href ={% url "cart_db" product.id %}>add to cart </a> 
 											<div class="product_category">In <a href="category.html">{{product.category}}</a></div>
 										</div>
 									</div>

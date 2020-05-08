@@ -145,6 +145,7 @@
 									<div>
 										<div>
 											<div class="product_name"><a href="{% url 'product' product.id %}">{{ product.name }}</a></div>
+									<a href ={% url "cart_db" product.id %}>add to cart </a> 
 											<div class="product_category">In <a href="category.html">{{product.category}}</a></div>
 										</div>
 									</div>
@@ -154,7 +155,7 @@
 									</div>
 								</div>
 						
-								{% comment %} <form action="{% url "cart_add" product.id %}" method="post">
+								 {% comment %} <form action="{% url "cart_add" product.id %}" method="post">
 								{% csrf_token %}
 								{{ cart_product_form }} 
 								<input type="submit" value="add to cart" class="btn btn-primary">

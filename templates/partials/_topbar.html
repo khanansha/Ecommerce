@@ -68,7 +68,7 @@
 				<!-- User -->
 				<div class="user"><a href="#"><div><img src="{% static 'images/user.svg' %}" alt="https://www.flaticon.com/authors/freepik"><div>1</div></div></a></div>
 				<!-- Cart -->
-				<div class="cart" >(<span id="cart">0</span>)<a href=""><div><img class="svg" src="{% static 'images/cart.svg'%}" alt="https://www.flaticon.com/authors/freepik"></div></a></div>
+				<div class="cart" >(<span id="cart">{{cartcount}}</span>)<a href="{% url "cartdb_details" %}"><div><img class="svg" src="{% static 'images/cart.svg'%}" alt="https://www.flaticon.com/authors/freepik"></div></a></div>
 				<!-- Phone -->
 				<div class="header_phone d-flex flex-row align-items-center justify-content-start">
 					<div><div><img src="{% static 'images/phone.svg'%}" alt="https://www.flaticon.com/authors/freepik"></div></div>
