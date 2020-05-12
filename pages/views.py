@@ -64,3 +64,22 @@ def product(request, product_id):
 
 # def cart(request):
 #     return render(request, 'pages/cart.html')
+
+def search(request):
+    # select * from Product ODER BY 'list_date' DESC
+    queryset_list = Product.objects.order_by('-pub_date')
+   # return HttpResponse(queryset_list.query)
+    # keywords
+    if 'keywords' in request.GET:
+        keywords = request.GET['keywords']
+
+        if keywords:
+           # SELECT name FROM product WHERE name CONTAINS 'word1 word2 word3...'
+            queryset_list = queryset_list.filter(
+                name__icontains=keywords)
+            # return HttpResponse(queryset_list.query)
+    context = {
+        'product': queryset_list,
+        'values': request.GET,
+    }
+    return render(request, 'pages/search.html', context)

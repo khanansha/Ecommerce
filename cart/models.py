@@ -11,6 +11,6 @@ class Cartdatabase(models.Model):
     #price = models.CharField(max_length=100, default='')
     user_id = models.IntegerField(default=1)
 
-    # @property
-    # def get_cartproduct(self):
-    #     return Product.objects.filter(id=self.id)
+    @property
+    def get_cartproduct(self):
+        return Cartdatabase.objects.filter(user_id=1).count()

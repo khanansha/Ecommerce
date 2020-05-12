@@ -73,9 +73,11 @@ def cartdb_details(request):
     # quantity = cartdetail[0].quantity
     # print(quantity)
     cartcount = Cartdatabase.objects.filter(user_id=1).count()
+    # lifeyy pahle cart count sirf cart detail ki age p aa rha tha because maine yeh
     # product = Product.objects.filter(id=product_id)
     # price = product[0].price
     # qprice = quantity*price
+    # sanjhe hubyy
     amt = 0
     for cartamt in cartamt:
         q = cartamt.quantity
@@ -110,3 +112,15 @@ def remq(request, cart_id):
     # print(q)
     add = Cartdatabase.objects.filter(id=cart_id).update(quantity=q-1)
     return redirect('cartdb_details')
+
+
+# def totalcartcount(request):
+#     totalcart = Cartdatabase.objects.filter(user_id=1).count()
+#     #q = int(totalcart.query)
+#     # return HttpResponse(q)
+#     print(totalcart)
+#     # lifeyy count aaa rha tha
+#     context = {
+#         'totalcart': totalcart,
+#     }
+#     return render(request, 'partials/_topbar.html', context)

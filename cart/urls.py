@@ -9,6 +9,7 @@ urlpatterns = [
     path('cartdb_details/', views.cartdb_details, name='cartdb_details'),
     path('qadd/<int:cart_id>', views.qadd, name='qadd'),
     path('remq/<int:cart_id>', views.remq, name='remq'),
+    # path('totalcartcount/', views.totalcartcount, name='totalcartcount'),
 
 
 ]

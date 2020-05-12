@@ -60,15 +60,18 @@
 			<div class="header_right d-flex flex-row align-items-center justify-content-start ml-auto">
 				<!-- Search -->
 				<div class="header_search">
-					<form action="#" id="header_search_form">
-						<input type="text" class="search_input" placeholder="Search Item" required="required">
-						<button class="header_search_button"><img src="{% static 'images/search.png' %}" alt=""></button>
+					<form id="header_search_form" action="{% url 'search' %}">
+						<input type="text" class="search_input" name="keywords" placeholder="Search Item" required="required">
+						<button type="submit" class="header_search_button"><img src="{% static 'images/search.png' %}" alt=""></button>
 					</form>
 				</div>
 				<!-- User -->
 				<div class="user"><a href="#"><div><img src="{% static 'images/user.svg' %}" alt="https://www.flaticon.com/authors/freepik"><div>1</div></div></a></div>
 				<!-- Cart -->
-				<div class="cart" >(<span id="cart">{{cartcount}}</span>)<a href="{% url "cartdb_details" %}"><div><img class="svg" src="{% static 'images/cart.svg'%}" alt="https://www.flaticon.com/authors/freepik"></div></a></div>
+				{% comment %} {% for k in Cartdatabase.get_cartproduct %} {% endcomment %}
+
+				<div class="cart" >(<span id="cart">0</span>)<a href="{% url "cartdb_details" %}"><div><img class="svg" src="{% static 'images/cart.svg'%}" alt="https://www.flaticon.com/authors/freepik"></div></a></div>
+				{% comment %} {% endfor %} {% endcomment %}
 				<!-- Phone -->
 				<div class="header_phone d-flex flex-row align-items-center justify-content-start">
 					<div><div><img src="{% static 'images/phone.svg'%}" alt="https://www.flaticon.com/authors/freepik"></div></div>
@@ -77,7 +80,7 @@
 			</div>
 		</div>
 	</header>
-{% comment %} <script>
+<script>
 console.log('working');
 if(localStorage.getItem('cart') == null){
 var cart = {};
@@ -102,4 +105,4 @@ console.log(cart);
 localStorage.setItem('cart', JSON.stringify(cart));
 document.getElementById('cart').innerHTML = Object.keys(cart).length;
 });
-</script> {% endcomment %}
+</script> 
